@@ -1,0 +1,22 @@
+{
+  "name": "certificate-montior",
+  "authors": [
+    "Jonas Friedmann <j@frd.mn>"
+  ],
+  "description": "Dashboard to monitor and gather SSL/TLS certificates.",
+  "moduleType": [
+    "node"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/frdmn/certificate-monitor",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "v4.0.0-alpha.2"
+  }
+}
