@@ -1,9 +1,10 @@
 {
-  "name": "certificate-montior",
+  "name": "certificate-monitor",
+  "version": "1.0.0",
+  "description": "Dashboard to monitor and gather SSL/TLS certificates.",
   "authors": [
     "Jonas Friedmann <j@frd.mn>"
   ],
-  "description": "Dashboard to monitor and gather SSL/TLS certificates.",
   "moduleType": [
     "node"
   ],
