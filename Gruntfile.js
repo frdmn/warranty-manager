@@ -6,9 +6,10 @@ module.exports = function(grunt) {
         dirs: {
             bower: 'bower_components',
             css: 'assets/css',
-            js: 'assets/js',
+            fonts: 'assets/fonts',
             images: 'assets/images',
-            icons: 'assets/icons'
+            icons: 'assets/icons',
+            js: 'assets/js'
         },
 
         // SCSS
@@ -62,11 +63,11 @@ module.exports = function(grunt) {
             },
             dist: {
                 src: [
-                    '<%= dirs.bower %>/jquery/dist/jquery.js',
-                    '<%= dirs.bower %>/AdminLTE/dist/js/app.js',
-                    '<%= dirs.js %>/*.js',
-                    '!<%= dirs.js %>/modernizr.js',
-                    '!<%= dirs.js %>/build.js'
+                '<%= dirs.bower %>/jquery/dist/jquery.js',
+                '<%= dirs.bower %>/AdminLTE/dist/js/app.js',
+                '<%= dirs.js %>/*.js',
+                '!<%= dirs.js %>/modernizr.js',
+                '!<%= dirs.js %>/build.js'
                 ],
                 dest: '<%= dirs.js %>/build.js',
             },
@@ -75,10 +76,10 @@ module.exports = function(grunt) {
         // JShint
         jshint: {
             all: [
-                'Gruntfile.js',
-                '<%= dirs.js %>/*.js',
-                '!<%= dirs.js %>/modernizr.js',
-                '!<%= dirs.js %>/build.js'
+            'Gruntfile.js',
+            '<%= dirs.js %>/*.js',
+            '!<%= dirs.js %>/modernizr.js',
+            '!<%= dirs.js %>/build.js'
             ]
         },
 
