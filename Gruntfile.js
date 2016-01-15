@@ -77,6 +77,8 @@ module.exports = function(grunt) {
                 src: [
                 '<%= dirs.bower %>/jquery/dist/jquery.js',
                 '<%= dirs.bower %>/AdminLTE/bootstrap/js/bootstrap.js',
+                '<%= dirs.bower %>/AdminLTE/plugins/fastclick/fastclick.js',
+                '<%= dirs.bower %>/AdminLTE/plugins/slimScroll/jquery.slimscroll.js',
                 '<%= dirs.bower %>/AdminLTE/dist/js/app.js',
                 '<%= dirs.js %>/*.js',
                 '!<%= dirs.js %>/modernizr.js',
