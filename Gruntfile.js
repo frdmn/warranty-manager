@@ -39,7 +39,9 @@ module.exports = function(grunt) {
             main: {
                 files: [
                     // Font Awesome icon font
-                    {cwd: '<%= dirs.bower %>/font-awesome/fonts', src: ['**/*'], dest: '<%= dirs.fonts %>', expand: true}
+                    {cwd: '<%= dirs.bower %>/font-awesome/fonts', src: ['**/*'], dest: '<%= dirs.fonts %>', expand: true},
+                    // AdminLTE images
+                    {cwd: '<%= dirs.bower %>/AdminLTE/dist/img', src: ['**/*'], dest: '<%= dirs.images %>', expand: true}
                 ],
             },
         },
