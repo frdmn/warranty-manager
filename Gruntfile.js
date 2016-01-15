@@ -34,6 +34,16 @@ module.exports = function(grunt) {
             }
         },
 
+        // Copy
+        copy: {
+            main: {
+                files: [
+                    // Font Awesome icon font
+                    {cwd: '<%= dirs.bower %>/font-awesome/fonts', src: ['**/*'], dest: '<%= dirs.fonts %>', expand: true}
+                ],
+            },
+        },
+
         // CSS autoprefixer
         autoprefixer: {
             options: {
@@ -163,7 +173,7 @@ module.exports = function(grunt) {
         }
     });
 
-    grunt.registerTask('default', ['sass:build', 'autoprefixer', 'concat', 'uglify', 'imagemin']);
-    grunt.registerTask('dev', ['connect', 'watch', 'notify']);
-    grunt.registerTask('dev:sync', ['browser_sync', 'watch', 'notify']);
+grunt.registerTask('default', ['copy', 'sass:build', 'autoprefixer', 'concat', 'uglify', 'imagemin']);
+grunt.registerTask('dev', ['copy', 'connect', 'watch', 'notify']);
+grunt.registerTask('dev:sync', ['browser_sync', 'watch', 'notify']);
 };
