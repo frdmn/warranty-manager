@@ -23,13 +23,12 @@ Temporary Items
 #####=== Dashbrew ===#####
 .dashbrew
 
-#####=== Grunt ===#####
+#####=== Node ===#####
 node_modules
 
 #####=== certificate-monitor ===#####
 bower_components
 assets/css/*.css
-assets/css/*.css.map
 assets/js/modernizr.js
 assets/js/build.js
 assets/fonts
