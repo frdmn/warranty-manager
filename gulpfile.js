@@ -48,6 +48,8 @@ gulp.task('styles', function () {
 gulp.task('fonts', function () {
   gulp.src([dirs.bower + '/font-awesome/fonts/*'])
     .pipe(gulp.dest(dirs.fonts + '/'));
+  gulp.src([dirs.bower + '/AdminLTE/bootstrap/fonts/*'])
+    .pipe(gulp.dest(dirs.fonts + '/'));
 });
 
 // Concat JavaScript
