@@ -1,12 +1,12 @@
+/* Variables */
+
+$icon-font-path: "../fonts/";
+
 /* Bower imports */
 
 // Bootstrap
-@import 'bower_components/AdminLTE/bootstrap/css/bootstrap';
-// Font Awesome
-@import 'bower_components/font-awesome/scss/font-awesome';
-// Ionicons
-@import 'bower_components/ionicons/scss/ionicons';
-// AdminLTE
-@import 'bower_components/AdminLTE/dist/css/AdminLTE';
-// AdminLTE skin
-@import "bower_components/AdminLTE/dist/css/skins/skin-black";
+@import 'bower_components/bootstrap-sass/assets/stylesheets/bootstrap';
+
+/* Partials */
+
+@import 'main';

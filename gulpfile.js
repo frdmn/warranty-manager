@@ -46,9 +46,7 @@ gulp.task('styles', function () {
 
 // Copy fonts
 gulp.task('fonts', function () {
-  gulp.src([dirs.bower + '/font-awesome/fonts/*'])
-    .pipe(gulp.dest(dirs.fonts + '/'));
-  gulp.src([dirs.bower + '/AdminLTE/bootstrap/fonts/*'])
+  gulp.src([dirs.bower + '/bootstrap-sass/assets/fonts/bootstrap/*'])
     .pipe(gulp.dest(dirs.fonts + '/'));
 });
 
@@ -61,10 +59,7 @@ gulp.task('scripts', function () {
   // Process JavaScript files
   gulp.src([
     dirs.bower + '/jquery/dist/jquery.js',
-    dirs.bower + '/AdminLTE/bootstrap/js/bootstrap.js',
-    dirs.bower + '/AdminLTE/plugins/fastclick/fastclick.js',
-    dirs.bower + '/AdminLTE/plugins/slimScroll/jquery.slimscroll.js',
-    dirs.bower + '/AdminLTE/dist/js/app.js',
+    dirs.bower + '/bootstrap-sass/assets/javascripts/bootstrap.js',
     dirs.js + '/*.js',
     '!' + dirs.js + '/modernizr.js',
     '!' + dirs.js + '/build.js'
@@ -74,11 +69,8 @@ gulp.task('scripts', function () {
   .pipe(gulp.dest(dirs.js + '/'));
 });
 
-// Copy and optimize images
-gulp.task('images', function () {
-  gulp.src([dirs.bower + '/AdminLTE/dist/img/*'])
-    .pipe(gulp.dest(dirs.images + '/'));
-
+// Optimize images
+gulp.task('imagemin', function () {
   gulp.src(dirs.images + '/*')
     .pipe($.imagemin(imageminOptions))
     .pipe(gulp.dest(dirs.images));
@@ -96,12 +88,14 @@ gulp.task('watch', function () {
 // Clean task
 gulp.task('clean', function () {
   gulp.src([
-    dirs.js + '/build.js',
-    dirs.css + '/style.css'
+    dirs.css + '/style.css',
+    dirs.fonts + '/*',
+    dirs.images + '/*',
+    dirs.js + '/build.js'
   ], {read: false})
     .pipe($.clean());
 });
 
 // Register default and dev task
-gulp.task('default', ['styles', 'fonts', 'scripts', 'images'], function () {});
+gulp.task('default', ['styles', 'fonts', 'scripts', 'imagemin'], function () {});
 gulp.task('dev', ['default', 'watch'], function () {});
