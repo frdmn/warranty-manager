@@ -1,10 +1,10 @@
 {
-  "name": "certificate-monitor",
+  "name": "crtmgnt",
   "version": "1.0.0",
-  "description": "Dashboard to monitor and gather SSL/TLS certificates.",
+  "description": "Dashboard to monitor and manage SSL/TLS certificates.",
   "repository": {
     "type": "git",
-    "url": "https://github.com/frdmn/certificate-monitor.git"
+    "url": "https://github.com/frdmn/crtmgnt.git"
   },
   "devDependencies": {
     "gulp": "^3.9.0",

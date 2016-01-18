@@ -1,7 +1,7 @@
 {
-  "name": "certificate-monitor",
+  "name": "crtmgnt",
   "version": "1.0.0",
-  "description": "Dashboard to monitor and gather SSL/TLS certificates.",
+  "description": "Dashboard to monitor and manage SSL/TLS certificates.",
   "authors": [
     "Jonas Friedmann <j@frd.mn>"
   ],
@@ -9,7 +9,7 @@
     "node"
   ],
   "license": "MIT",
-  "homepage": "https://github.com/frdmn/certificate-monitor",
+  "homepage": "https://github.com/frdmn/crtmgnt",
   "ignore": [
     "**/.*",
     "node_modules",
