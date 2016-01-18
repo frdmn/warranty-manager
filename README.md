@@ -1,21 +1,21 @@
-# Certificate monitor
+# CRTmgnt
 
-[description]
+![](http://i.imgur.com/xHDu6a7.png)
+
+Simple web app to keep track of your TLS/SSL certificates: How long they are valid? Which ones are due for renewal? Where and what for are they in use (e.g. wild card certificates)?
 
 ## Installation
 
 1. Make sure you've installed all requirements
 2. Clone this repository:
-  `git clone https://github.com/[GitHubUsername]/Certificate monitor`
-3. Install the project using `make`:
-  `make install`
-
-## Usage
-
-Here's a short explanation how to use `Certificate monitor`:
-
-* Use it
-* Profit
+  `git clone https://github.com/frdmn/crtmgnt`
+3. Install dependencies using `npm` and `bower`:
+  `npm install`  
+  `bower install`  
+4. Compile assets using Gulp:  
+  `gulp`
+5. Start web server:  
+  `gulp dev`  
 
 ## Contributing
 
@@ -27,9 +27,8 @@ Here's a short explanation how to use `Certificate monitor`:
 
 ## Requirements / Dependencies
 
-* This
-* That
-* As well as this
+* NodeJS
+* Gulp/Bower CLI (`npm install -g gulp bower`)
 
 ## Version
 
