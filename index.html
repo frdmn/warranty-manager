@@ -5,13 +5,13 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <meta name="description" content="">
-    <meta name="author" content="">
-<!--     <link rel="icon" href="../../favicon.ico">  -->
-    <title>Starter Template for Bootstrap</title>
+    <meta name="description" content="certfificate monitor">
+    <meta name="author" content="Jonas Friedmann <j@frd.mn>">
+    <link rel="icon" href="assets/images/favicon.ico">
 
-    <!-- Bootstrap core CSS -->
+    <title>Sticky Footer Template for Bootstrap</title>
+
+    <!-- Core CSS -->
     <link href="assets/css/style.css" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -23,39 +23,73 @@
 
   <body>
 
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">Project name</a>
-        </div>
-        <div id="navbar" class="collapse navbar-collapse">
-          <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#contact">Contact</a></li>
-          </ul>
-        </div><!--/.nav-collapse -->
-      </div>
-    </nav>
-
+    <!-- Begin page content -->
     <div class="container">
-
-      <div class="starter-template">
-        <h1>Bootstrap starter template</h1>
-        <p class="lead">Use this document as a way to quickly start any new project.<br> All you get is this text and a mostly barebones HTML document.</p>
+      <div class="page-header">
+        <h1>
+            Certificate monitor
+            <small>v1.0.0</small>
+            <button class='btn btn-primary pull-right'>Add</button>
+        </h1>
       </div>
 
-    </div><!-- /.container -->
+      <div class="row">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Hostname</th>
+                    <th>Expiration</th>
+                    <th>Customer</th>
+                    <th>Usage</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">1</th>
+                    <td>webmail.company.com</td>
+                    <td>about 2 weeks</td>
+                    <td>Internal</td>
+                    <td>Exchange OWA</td>
+                    <td><button type="button" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-pencil"></span></button> <button type="button" class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-minus"></span></button></td>
+                </tr>
+                <tr>
+                    <th scope="row">2</th>
+                    <td>tls.startup.ru</td>
+                    <td>about 1 year</td>
+                    <td>Customer A (#300123)</td>
+                    <td>Postfix</td>
+                    <td><button type="button" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-pencil"></span></button> <button type="button" class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-minus"></span></button></td>
+                </tr>
+                <tr>
+                    <th scope="row">3</th>
+                    <td>mail.exchange-system.co.uk</td>
+                    <td>about 1 year</td>
+                    <td>Customer B (#300456)</td>
+                    <td>Exchange ETS</td>
+                    <td><button type="button" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-pencil"></span></button> <button type="button" class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-minus"></span></button></td>
+                </tr>
+                <tr>
+                    <th scope="row">4</th>
+                    <td>www.bank-of-wuerzburg.de</td>
+                    <td>about 2 years</td>
+                    <td>Customer C (#300789)</td>
+                    <td>Nginx</td>
+                    <td><button type="button" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-pencil"></span></button> <button type="button" class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-minus"></span></button></td>
+                </tr>
+            </tbody>
+        </table>
+      </div>
+    </div>
 
+    <footer class="footer">
+      <div class="container">
+        <p class="text-muted pull-left">Made by <strong><a href="https://frd.mn" target="_blank" href="#">frdmn</a></strong>.</p>
+        <p class="text-muted pull-right"></p>
+      </div>
+    </footer>
 
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="assets/js/build.js"></script>
   </body>
