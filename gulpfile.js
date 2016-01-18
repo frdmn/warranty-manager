@@ -55,7 +55,7 @@ gulp.task('fonts', function () {
 gulp.task('scripts:copy', function () {
   // Copy modernizr from bower_components
   gulp.src([dirs.bower + '/modernizr/modernizr.js'])
-      .pipe(gulp.dest(dirs.js + '/'));
+    .pipe(gulp.dest(dirs.js + '/'));
 });
 
 // Concat JavaScript
