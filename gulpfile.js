@@ -33,7 +33,8 @@ gulp.task('styles:dev', function () {
     .pipe($.sass().on('error', $.sass.logError))
     .pipe($.autoprefixer(autoprefixerOptions))
     .pipe($.sourcemaps.write())
-    .pipe(gulp.dest(dirs.css));
+    .pipe(gulp.dest(dirs.css))
+    .pipe($.connect.reload());
 });
 
 // Compile sass for production (compressed)
@@ -41,8 +42,7 @@ gulp.task('styles', function () {
   gulp.src(dirs.css + '/**/*.scss')
     .pipe($.sass({outputStyle: 'compressed'}).on('error', $.sass.logError))
     .pipe($.autoprefixer(autoprefixerOptions))
-    .pipe(gulp.dest(dirs.css))
-    .pipe($.connect.reload());
+    .pipe(gulp.dest(dirs.css));
 });
 
 // Copy fonts
