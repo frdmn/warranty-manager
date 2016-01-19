@@ -1,5 +1,5 @@
 <?php
-  require 'vendor/autoload.php';
+  require '../vendor/autoload.php';
 
   $app = new \Slim\Slim();
 
@@ -11,4 +11,5 @@
               'msg' => 'Welcome to my json API!',
           ));
   });
-?>
+
+  $app->run();
