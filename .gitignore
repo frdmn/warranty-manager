@@ -26,6 +26,10 @@ Temporary Items
 #####=== Node ===#####
 node_modules
 
+#####=== PHP/Composer ===#####
+vendor
+composer.lock
+
 #####=== crtmgnt ===#####
 bower_components
 assets/css/*.css
