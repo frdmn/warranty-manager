@@ -1,0 +1,8 @@
+---
+crtmgmt.devel:
+  title: crtmgmt
+  php:
+    build: system
+  vhost:
+    servername: crtmgmt.devel
+    ssl: false
