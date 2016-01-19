@@ -2,6 +2,8 @@
     // Auto load composer components
     require 'vendor/autoload.php';
 
+    require_once('includes/functions.php');
+
     // Require config
     include('config.php');
 
@@ -48,8 +50,8 @@
     <div class="container">
       <div class="page-header">
         <h1>
-            <small>v1.0.0</small>
             <?= GENERAL_TITLE ?>
+            <small><?= getVersion(); ?></small>
             <button class='btn btn-primary pull-right'>Add</button>
         </h1>
       </div>
