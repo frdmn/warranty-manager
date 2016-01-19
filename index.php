@@ -108,7 +108,7 @@
 
     <footer class="footer">
       <div class="container">
-        <p class="text-muted pull-left">Made by <strong><a href="https://frd.mn" target="_blank" href="#">frdmn</a></strong>.</p>
+        <p class="text-muted pull-left">Made by <strong><a href="https://frd.mn" target="_blank" href="#">frdmn</a></strong> under <a href="LICENSE">MIT</a> license.</p>
         <p class="text-muted pull-right"></p>
       </div>
     </footer>
