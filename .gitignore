@@ -28,6 +28,7 @@ vendor
 composer.lock
 
 #####=== crtmgnt ===#####
+config.php
 bower_components
 assets/css/*.css
 assets/js/modernizr.js
