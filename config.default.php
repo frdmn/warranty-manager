@@ -7,3 +7,5 @@
   define('DB_NAME', 'crt');
   define('DB_USERNAME', 'crt');
   define('DB_PASSWORD', '123456');
+
+  define('GENERAL_TITLE', 'CRTmgmt');

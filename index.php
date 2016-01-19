@@ -31,7 +31,7 @@
     <meta name="author" content="Jonas Friedmann <j@frd.mn>">
     <link rel="icon" href="assets/images/favicon.ico">
 
-    <title>CRTmgmt - Homepage</title>
+    <title><?= GENERAL_TITLE ?> - Overview</title>
 
     <!-- Core CSS -->
     <link href="assets/css/style.css" rel="stylesheet">
@@ -48,8 +48,8 @@
     <div class="container">
       <div class="page-header">
         <h1>
-            CRTmgmt
             <small>v1.0.0</small>
+            <?= GENERAL_TITLE ?>
             <button class='btn btn-primary pull-right'>Add</button>
         </h1>
       </div>
