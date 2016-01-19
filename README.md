@@ -10,8 +10,9 @@ Simple web app to keep track of your TLS/SSL certificates: How long they are val
 2. Clone this repository:
   `git clone https://github.com/frdmn/crtmgmt`
 3. Install dependencies using `npm` and `bower`:
-  `npm install`  
-  `bower install`  
+  `composer install` (for PHP dependencies)  
+  `npm install` (for Node dependencies)  
+  `bower install` (to download all web libraries)  
 4. Compile assets using Gulp:  
   `gulp`
 5. Start web server:  
@@ -29,6 +30,7 @@ Simple web app to keep track of your TLS/SSL certificates: How long they are val
 
 * NodeJS
 * Gulp/Bower CLI (`npm install -g gulp bower`)
+* PHP/Composer
 
 ## Version
 
