@@ -1,5 +1,5 @@
 {
-  "name": "crtmgnt",
+  "name": "crtmgmt",
   "version": "1.0.0",
   "description": "Dashboard to monitor and manage SSL/TLS certificates.",
   "authors": [
@@ -9,7 +9,7 @@
     "node"
   ],
   "license": "MIT",
-  "homepage": "https://github.com/frdmn/crtmgnt",
+  "homepage": "https://github.com/frdmn/crtmgmt",
   "ignore": [
     "**/.*",
     "node_modules",

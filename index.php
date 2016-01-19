@@ -9,7 +9,7 @@
     <meta name="author" content="Jonas Friedmann <j@frd.mn>">
     <link rel="icon" href="assets/images/favicon.ico">
 
-    <title>CRTmgnt - Homepage</title>
+    <title>CRTmgmt - Homepage</title>
 
     <!-- Core CSS -->
     <link href="assets/css/style.css" rel="stylesheet">
@@ -27,7 +27,7 @@
     <div class="container">
       <div class="page-header">
         <h1>
-            CRTmgnt
+            CRTmgmt
             <small>v1.0.0</small>
             <button class='btn btn-primary pull-right'>Add</button>
         </h1>
