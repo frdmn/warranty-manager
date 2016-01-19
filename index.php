@@ -6,22 +6,6 @@
 
     // Require config
     include('config.php');
-
-    // Check for necessarry credential/configuration constants
-    if (!defined('DB_HOSTNAME') || !defined('DB_NAME') | !defined('DB_USERNAME') | !defined('DB_PASSWORD')) {
-        die('Check config.php file and make sure to adjust your MySQL credentials.');
-    }
-
-    // Initalize database connection
-    $database = new medoo([
-        'database_type' => 'mysql',
-        'database_name' => constant('DB_NAME'),
-        'server' => constant('DB_HOSTNAME'),
-        'username' => constant('DB_USERNAME'),
-        'password' => constant('DB_PASSWORD'),
-        'charset' => 'utf8',
-        'prefix' => 'crt_',
-    ]);
 ?>
 <!DOCTYPE html>
 <html lang="en">
