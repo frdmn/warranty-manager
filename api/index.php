@@ -5,6 +5,9 @@ require '../vendor/autoload.php';
 // Require config
 include('../config.php');
 
+// Construct new error exceptions
+class ResourceNotFoundException extends Exception {}
+
 // Initalize Slim instance
 $app = new \Slim\Slim();
 $app->view(new \JsonApiView());
@@ -31,7 +34,8 @@ $app->get('/', function() use ($app, $database) {
   // Create array with available routes
   $routes = array(
     'GET /' => 'This API overview, right here',
-    'GET /certificates' => 'Get all available certificates'
+    'GET /certificates' => 'Get all available certificates',
+    'GET /certificates/[id]' => 'Get certificate with ID \'[ID]\''
   );
 
   // Render as JSON resulta
@@ -49,6 +53,28 @@ $app->get('/certificates', function() use ($app, $database) {
   $app->render(200,array(
     'msg' => $data
   ));
+});
+
+// GET "/certificates/:id" route
+$app->get('/certificates/:id', function($id) use ($app, $database) {
+  try {
+    // Run SQL select
+    $data = $database->select("certificates", "*", ['id' => $id]);
+
+    if ($data) {
+      // Render result
+      $app->render(200,array(
+        'msg' =>  $data
+      ));
+    } else {
+      throw new ResourceNotFoundException();
+    }
+  } catch (ResourceNotFoundException $e) {
+    // Render result
+    $app->render(404,array(
+      'msg' => 'Couldn\'t find certificate with ID '.$id
+    ));
+  }
 });
 
 $app->run();
