@@ -74,6 +74,10 @@ $app->get('/certificates/:id', function($id) use ($app, $database) {
     $app->render(404,array(
       'msg' => 'Couldn\'t find certificate with ID '.$id
     ));
+  } catch (Exception $e) {
+    $app->render(400,array(
+      'msg' => "Unexpected exception"
+    ));
   }
 });
 
