@@ -27,9 +27,27 @@ $database = new medoo([
 ]);
 
 // GET "/" route
-$app->get('/', function() use ($app) {
+$app->get('/', function() use ($app, $database) {
+  // Create array with available routes
+  $routes = array(
+    'GET /' => 'This API overview, right here',
+    'GET /certificates' => 'Get all available certificates'
+  );
+
+  // Render as JSON resulta
   $app->render(200,array(
-    'msg' => 'Welcome to my json API!',
+    'msg' => array('routes'=>$routes)
+  ));
+});
+
+// GET "/certificates" route
+$app->get('/certificates', function() use ($app, $database) {
+  // Run SQL select
+  $data = $database->select("certificates", "*");
+
+  // Render result
+  $app->render(200,array(
+    'msg' => $data
   ));
 });
 
