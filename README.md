@@ -9,7 +9,7 @@ Simple web app to keep track of your TLS/SSL certificates: How long they are val
 1. Make sure you've installed all requirements
 2. Clone this repository:
   `git clone https://github.com/frdmn/crtmgmt`
-3. Install dependencies using `npm` and `bower`:
+3. Install dependencies using `npm` and `bower`:  
   `composer install` (for PHP dependencies)  
   `npm install` (for Node dependencies)  
   `bower install` (to download all web libraries)  
