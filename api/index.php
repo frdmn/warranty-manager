@@ -23,7 +23,7 @@ $database = new medoo([
   'username' => constant('DB_USERNAME'),
   'password' => constant('DB_PASSWORD'),
   'charset' => 'utf8',
-  'prefix' => 'crt_',
+  // 'prefix' => 'crt_',
 ]);
 
 // GET "/" route
