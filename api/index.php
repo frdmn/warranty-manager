@@ -5,6 +5,15 @@ include('../config.php');
 
 // Auto load composer components
 require '../vendor/autoload.php';
+
+// Check if DEBUG is enabled
+if (defined('DEBUG')) {
+  error_reporting(E_ALL);
+  ini_set('display_errors', 0);
+} else {
+  error_reporting(E_ALL & ~E_NOTICE);
+}
+
 // Construct new error exceptions
 class ResourceNotFoundException extends Exception {}
 
