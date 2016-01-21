@@ -1,10 +1,10 @@
 <?php
-// Auto load composer components
-require '../vendor/autoload.php';
 
 // Require config
 include('../config.php');
 
+// Auto load composer components
+require '../vendor/autoload.php';
 // Construct new error exceptions
 class ResourceNotFoundException extends Exception {}
 
