@@ -35,6 +35,7 @@ function getDatabaseConnection() {
 
 /* Routes */
 
+// GET "/"
 function routeGetOverview() {
   // Create array with available routes
   $routes = array(
@@ -50,6 +51,7 @@ function routeGetOverview() {
   echo json_encode($data);
 }
 
+// GET "/certificates"
 function routeGetCertificates() {
     $sql = "SELECT * FROM certificates";
     try {
@@ -64,6 +66,7 @@ function routeGetCertificates() {
     }
 }
 
+// GET "/certificates/[id]"
 function routeGetCertificate($id) {
     $sql = "SELECT * FROM certificates WHERE id=:id";
     try {
