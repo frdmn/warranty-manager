@@ -1,6 +1,6 @@
 <?php
 
-// Require config
+// Require config file
 include('../config.php');
 
 // Auto load composer components
@@ -9,37 +9,33 @@ require '../vendor/autoload.php';
 // Check if DEBUG is enabled
 if (defined('DEBUG')) {
   error_reporting(E_ALL);
-  ini_set('display_errors', 0);
+  ini_set('display_errors', 1);
 } else {
   error_reporting(E_ALL & ~E_NOTICE);
+  ini_set('display_errors', 0);
 }
 
 // Construct new error exceptions
 class ResourceNotFoundException extends Exception {}
+class ConfigurationException extends Exception {}
 
-// Initalize Slim instance
-$app = new \Slim\Slim();
-$app->view(new \JsonApiView());
-$app->add(new \JsonApiMiddleware());
+/* General functions */
 
-// Check for necessarry credential/configuration constants
-if (!defined('DB_HOSTNAME') || !defined('DB_NAME') | !defined('DB_USERNAME') | !defined('DB_PASSWORD')) {
-  die('{"msg":"Invalid database connection","error":true,"status":500}');
+function getDatabaseConnection() {
+  try {
+    $db_username = constant('DB_USERNAME');
+    $db_password = constant('DB_PASSWORD');
+    $conn = new PDO('mysql:host='.constant('DB_HOSTNAME').';dbname='.constant('DB_NAME').'', $db_username, $db_password);
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+  } catch(PDOException $e) {
+    echo 'ERROR: ' . $e->getMessage();
+  }
+  return $conn;
 }
 
-// Initalize database connection
-$database = new medoo([
-  'database_type' => 'mysql',
-  'database_name' => constant('DB_NAME'),
-  'server' => constant('DB_HOSTNAME'),
-  'username' => constant('DB_USERNAME'),
-  'password' => constant('DB_PASSWORD'),
-  'charset' => 'utf8',
-  // 'prefix' => 'crt_',
-]);
+/* Routes */
 
-// GET "/" route
-$app->get('/', function() use ($app, $database) {
+function routeGetOverview() {
   // Create array with available routes
   $routes = array(
     'GET /' => 'This API overview, right here',
@@ -47,47 +43,47 @@ $app->get('/', function() use ($app, $database) {
     'GET /certificates/[id]' => 'Get certificate with ID \'[ID]\''
   );
 
-  // Render as JSON resulta
-  $app->render(200,array(
-    'msg' => array('routes'=>$routes)
-  ));
-});
+  $data = array(
+    'routes' => $routes
+  );
 
-// GET "/certificates" route
-$app->get('/certificates', function() use ($app, $database) {
-  // Run SQL select
-  $data = $database->select("certificates", "*");
+  echo json_encode($data);
+}
 
-  // Render result
-  $app->render(200,array(
-    'msg' => $data
-  ));
-});
-
-// GET "/certificates/:id" route
-$app->get('/certificates/:id', function($id) use ($app, $database) {
-  try {
-    // Run SQL select
-    $data = $database->select("certificates", "*", ['id' => $id]);
-
-    if ($data) {
-      // Render result
-      $app->render(200,array(
-        'msg' =>  $data
-      ));
-    } else {
-      throw new ResourceNotFoundException();
+function routeGetCertificates() {
+    $sql = "SELECT * FROM certificates";
+    try {
+        $dbCon = getDatabaseConnection();
+        $stmt   = $dbCon->query($sql);
+        $users  = $stmt->fetchAll(PDO::FETCH_OBJ);
+        $dbCon = null;
+        echo '{"users": ' . json_encode($users) . '}';
     }
-  } catch (ResourceNotFoundException $e) {
-    // Render result
-    $app->render(404,array(
-      'msg' => 'Couldn\'t find certificate with ID '.$id
-    ));
-  } catch (Exception $e) {
-    $app->render(400,array(
-      'msg' => "Unexpected exception"
-    ));
-  }
-});
+    catch(PDOException $e) {
+        echo '{"error":{"text":'. $e->getMessage() .'}}';
+    }
+}
 
+function routeGetCertificate($id) {
+    $sql = "SELECT * FROM certificates WHERE id=:id";
+    try {
+        $dbCon = getDatabaseConnection();
+        $stmt = $dbCon->prepare($sql);
+        $stmt->bindParam("id", $id);
+        $stmt->execute();
+        $user = $stmt->fetchObject();
+        $dbCon = null;
+        echo json_encode($user);
+    } catch(PDOException $e) {
+        echo '{"error":{"text":'. $e->getMessage() .'}}';
+    }
+}
+
+/* Logic */
+
+// Initalize Slim instance
+$app = new \Slim\Slim();
+$app->get('/', 'routeGetOverview');
+$app->get('/certificates', 'routeGetCertificates');
+$app->get('/certificates/:id', 'routeGetCertificate');
 $app->run();
