@@ -42,44 +42,44 @@ function routeGetOverview() {
     'GET /' => 'This API overview, right here',
     'GET /certificates' => 'Get all available certificates',
     'GET /certificates/[id]' => 'Get certificate with ID \'[ID]\''
-  );
+    );
 
   $data = array(
     'routes' => $routes
-  );
+    );
 
   echo json_encode($data);
 }
 
 // GET "/certificates"
 function routeGetCertificates() {
-    $sql = "SELECT * FROM certificates";
-    try {
-        $dbCon = getDatabaseConnection();
-        $stmt   = $dbCon->query($sql);
-        $users  = $stmt->fetchAll(PDO::FETCH_OBJ);
-        $dbCon = null;
-        echo '{"users": ' . json_encode($users) . '}';
-    }
-    catch(PDOException $e) {
-        echo '{"error":{"text":'. $e->getMessage() .'}}';
-    }
+  $sql = "SELECT * FROM certificates";
+  try {
+    $dbCon = getDatabaseConnection();
+    $stmt = $dbCon->query($sql);
+    $users = $stmt->fetchAll(PDO::FETCH_OBJ);
+    $dbCon = null;
+    echo '{"users": ' . json_encode($users) . '}';
+  }
+  catch(PDOException $e) {
+    echo '{"error":{"text":'. $e->getMessage() .'}}';
+  }
 }
 
 // GET "/certificates/[id]"
 function routeGetCertificate($id) {
-    $sql = "SELECT * FROM certificates WHERE id=:id";
-    try {
-        $dbCon = getDatabaseConnection();
-        $stmt = $dbCon->prepare($sql);
-        $stmt->bindParam("id", $id);
-        $stmt->execute();
-        $user = $stmt->fetchObject();
-        $dbCon = null;
-        echo json_encode($user);
-    } catch(PDOException $e) {
-        echo '{"error":{"text":'. $e->getMessage() .'}}';
-    }
+  $sql = "SELECT * FROM certificates WHERE id=:id";
+  try {
+    $dbCon = getDatabaseConnection();
+    $stmt = $dbCon->prepare($sql);
+    $stmt->bindParam("id", $id);
+    $stmt->execute();
+    $user = $stmt->fetchObject();
+    $dbCon = null;
+    echo json_encode($user);
+  } catch(PDOException $e) {
+    echo '{"error":{"text":'. $e->getMessage() .'}}';
+  }
 }
 
 /* Logic */
