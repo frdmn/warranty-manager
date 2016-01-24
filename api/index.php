@@ -15,9 +15,10 @@ if (defined('DEBUG')) {
   ini_set('display_errors', 0);
 }
 
-// Construct new error exceptions
-class ResourceNotFoundException extends Exception {}
-class ConfigurationException extends Exception {}
+// Standard exception data
+$jsonObject = array(
+  'status' => 'success'
+);
 
 /* General functions */
 
@@ -37,6 +38,8 @@ function getDatabaseConnection() {
 
 // GET "/"
 function routeGetOverview() {
+  global $jsonObject;
+
   // Create array with available routes
   $routes = array(
     'GET /' => 'This API overview, right here',
@@ -44,30 +47,37 @@ function routeGetOverview() {
     'GET /certificates/[id]' => 'Get certificate with ID \'[ID]\''
     );
 
-  $data = array(
-    'routes' => $routes
-    );
+  $jsonObject['data'] = $routes;
 
-  echo json_encode($data);
+  echo json_encode($jsonObject);
 }
 
 // GET "/certificates"
 function routeGetCertificates() {
+  global $jsonObject;
+
+  // Construct SQL query
   $sql = "SELECT * FROM certificates";
   try {
     $dbCon = getDatabaseConnection();
     $stmt = $dbCon->query($sql);
     $users = $stmt->fetchAll(PDO::FETCH_OBJ);
     $dbCon = null;
-    echo '{"users": ' . json_encode($users) . '}';
+    $jsonObject['data'] = $users;
+    echo json_encode($jsonObject);
   }
   catch(PDOException $e) {
-    echo '{"error":{"text":'. $e->getMessage() .'}}';
+    $jsonObject['status'] = 'error';
+    $jsonObject['message'] = $e->getMessage();
+    echo json_encode($jsonObject);
   }
 }
 
 // GET "/certificates/[id]"
 function routeGetCertificate($id) {
+  global $jsonObject;
+
+  // Construct SQL query
   $sql = "SELECT * FROM certificates WHERE id=:id";
   try {
     $dbCon = getDatabaseConnection();
@@ -76,9 +86,17 @@ function routeGetCertificate($id) {
     $stmt->execute();
     $user = $stmt->fetchObject();
     $dbCon = null;
-    echo json_encode($user);
+    if ($user) {
+      $jsonObject['data'] = $user;
+    } else {
+      $jsonObject['status'] = 'error';
+      $jsonObject['message'] = 'Couldn\'t find certificate with id '.$id;
+    }
+    echo json_encode($jsonObject);
   } catch(PDOException $e) {
-    echo '{"error":{"text":'. $e->getMessage() .'}}';
+    $jsonObject['status'] = 'error';
+    $jsonObject['message'] = $e->getMessage();
+    echo json_encode($jsonObject);
   }
 }
 
@@ -86,7 +104,9 @@ function routeGetCertificate($id) {
 
 // Initalize Slim instance
 $app = new \Slim\Slim();
+
 $app->get('/', 'routeGetOverview');
 $app->get('/certificates', 'routeGetCertificates');
 $app->get('/certificates/:id', 'routeGetCertificate');
+
 $app->run();
