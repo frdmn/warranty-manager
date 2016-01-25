@@ -10,12 +10,6 @@
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
-
 --
 -- Database: `crt`
 --
@@ -42,7 +36,13 @@ INSERT INTO `certificates` (`id`, `hostname`, `expiration`, `customer`, `usage`)
 (1, 'webmail.company.com', '2016-01-29', 0, 'Exchange OWA'),
 (2, 'tls.startup.ru', '2017-01-22', 1, 'Postfix'),
 (3, 'mail.exchange-system.co.uk', '2017-01-28', 2, 'Exchange ETS'),
-(4, 'www.bank-of-wuerzburg.de', '2018-01-19', 3, 'Nginx');
+(4, 'www.bank-of-wuerzburg.de', '2018-01-19', 3, 'Nginx'),
+(5, 'bank-of-wuerzburg.de', '2018-01-19', 3, 'Nginx'),
+(6, 'crm.bank-of-wuerzburg.de', '2018-01-19', 3, 'Nginx'),
+(7, 'international-company.eu', '2017-01-19', 4, 'Nginx'),
+(8, 'mail.international-company.eu', '2016-03-12', 4, 'Nginx'),
+(9, 'international.hosting', '2015-01-01', 5, 'Apache'),
+(10, 'www.bank-of-frankfurt.de', '2017-05-12', 5, 'Nginx');
 
 --
 -- Indexes for dumped tables
@@ -62,7 +62,4 @@ ALTER TABLE `certificates`
 -- AUTO_INCREMENT for table `certificates`
 --
 ALTER TABLE `certificates`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;

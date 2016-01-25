@@ -73,10 +73,16 @@ function routeGetOverview() {
 
 // GET "/certificates"
 function routeGetCertificates() {
-  global $jsonObject;
+  global $jsonObject, $app;
 
   // Construct SQL query
-  $sql = "SELECT * FROM certificates";
+  $page = $app->request->get('page');
+  $currentPage = isset($page) ? $page : 1;
+  $currentPage--; // substract one page
+  $results = 5;
+
+  $sql = "SELECT * FROM certificates ORDER BY id ASC LIMIT ".$currentPage*$results." , ".$results;
+
   try {
     $dbCon = getDatabaseConnection();
     $stmt = $dbCon->query($sql);
