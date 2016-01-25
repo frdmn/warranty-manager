@@ -15,6 +15,25 @@ if (defined('DEBUG')) {
   ini_set('display_errors', 0);
 }
 
+// Middleware to inject Content-Type headers
+class APIheaderMiddleware extends \Slim\Middleware {
+  public function call() {
+    $app = $this->app;
+    // Get request path and media type
+    $reqMediaType = $app->request->getMediaType();
+    $reqIsAPI = (bool) preg_match('|^/api/.*$|', $app->request->getPath());
+  // Run inner middleware and application
+        $this->next->call();
+    if ($reqMediaType === 'application/json' || $reqIsAPI) {
+      $app->response->headers->set('Content-Type', 'application/json');
+      $app->response->headers->set('Access-Control-Allow-Methods', '*');
+      $app->response->headers->set('Access-Control-Allow-Origin', '*');
+    } else {
+      $app->response->headers->set('Content-Type', 'text/html');
+    }
+  }
+}
+
 // Standard exception data
 $jsonObject = array(
   'status' => 'success'
@@ -104,6 +123,7 @@ function routeGetCertificate($id) {
 
 // Initalize Slim instance
 $app = new \Slim\Slim();
+$app->add(new \APIheaderMiddleware());
 
 $app->get('/', 'routeGetOverview');
 $app->get('/certificates', 'routeGetCertificates');
