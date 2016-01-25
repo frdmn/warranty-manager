@@ -20,10 +20,10 @@ class APIheaderMiddleware extends \Slim\Middleware {
   public function call() {
     $app = $this->app;
     // Get request path and media type
+    // Run inner middleware and application
+    $this->next->call();
     $reqMediaType = $app->request->getMediaType();
     $reqIsAPI = (bool) preg_match('|^/api/.*$|', $app->request->getPath());
-  // Run inner middleware and application
-        $this->next->call();
     if ($reqMediaType === 'application/json' || $reqIsAPI) {
       $app->response->headers->set('Content-Type', 'application/json');
       $app->response->headers->set('Access-Control-Allow-Methods', '*');
