@@ -1,6 +1,7 @@
 'use strict';
 
 var pngquant = require('imagemin-pngquant');
+var phplint = require('phplint').lint
 var gulp = require('gulp');
 var $ = require('gulp-load-plugins')();
 
@@ -84,6 +85,7 @@ gulp.task('imagemin', function () {
 // Watch task
 gulp.task('watch', function () {
   gulp.watch(dirs.css + '/**/*.scss', ['styles:dev']);
+  gulp.watch('**/*.php', ['phplint']);
   gulp.watch([
     dirs.js + '/*.js',
     '!' + dirs.js + '/build.js'
@@ -108,6 +110,17 @@ gulp.task('connect', function() {
     livereload: true
   });
 });
+
+// Lint PHP files
+gulp.task('phplint', function (cb) {
+  phplint(['*.php', 'api/*.php'], {limit: 10}, function (err, stdout, stderr) {
+    if (err) {
+      cb(err)
+      process.exit(1)
+    }
+    cb()
+  })
+})
 
 // Register default and dev task
 gulp.task('default', ['styles', 'fonts', 'scripts:copy', 'scripts', 'imagemin'], function () {});
