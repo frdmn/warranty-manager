@@ -76,22 +76,21 @@ function routeGetCertificates() {
   global $jsonObject, $app;
 
   // Construct SQL query
-  $page = $app->request->get('page');
-  $currentPage = isset($page) ? $page : 1;
-  $currentPage--; // substract one page
-  $results = 5;
+  $inputPage = $app->request->get('page') ? $app->request->get('page') : 1;
+  $realPage = $inputPage-1; // substract one page
+  $results = 5; // default per page
 
-  $sql = "SELECT * FROM certificates ORDER BY id ASC LIMIT ".$currentPage*$results." , ".$results;
+  $sql = "SELECT * FROM certificates ORDER BY id ASC LIMIT ".$realPage*$results." , ".$results;
 
   try {
     $dbCon = getDatabaseConnection();
     $stmt = $dbCon->query($sql);
     $users = $stmt->fetchAll(PDO::FETCH_OBJ);
     $dbCon = null;
-    $jsonObject['data'] = $users;
+    $jsonObject['data']['page'] = $inputPage;
+    $jsonObject['data']['hosts'] = $users;
     echo json_encode($jsonObject);
-  }
-  catch(PDOException $e) {
+  } catch(PDOException $e) {
     $jsonObject['status'] = 'error';
     $jsonObject['message'] = $e->getMessage();
     echo json_encode($jsonObject);
