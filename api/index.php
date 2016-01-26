@@ -86,11 +86,11 @@ function routeGetCertificates() {
   try {
     $dbCon = getDatabaseConnection();
     $stmt = $dbCon->query($sql);
-    $users = $stmt->fetchAll(PDO::FETCH_OBJ);
+    $result = $stmt->fetchAll(PDO::FETCH_OBJ);
     $dbCon = null;
-    if (!empty($users)) {
+    if (!empty($result)) {
       $jsonObject['data']['page'] = $inputPage;
-      $jsonObject['data']['hosts'] = $users;
+      $jsonObject['data']['hosts'] = $result;
     } else {
       $jsonObject['status'] = 'error';
       $jsonObject['message'] = 'Couldn\'t find any certificates';
@@ -114,10 +114,10 @@ function routeGetCertificate($id) {
     $stmt = $dbCon->prepare($sql);
     $stmt->bindParam("id", $id);
     $stmt->execute();
-    $user = $stmt->fetchObject();
+    $result = $stmt->fetchObject();
     $dbCon = null;
-    if ($user) {
-      $jsonObject['data'] = $user;
+    if ($result) {
+      $jsonObject['data'] = $result;
     } else {
       $jsonObject['status'] = 'error';
       $jsonObject['message'] = 'Couldn\'t find certificate with id '.$id;
