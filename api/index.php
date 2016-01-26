@@ -92,11 +92,13 @@ function routeGetCertificates() {
       $jsonObject['data']['page'] = $inputPage;
       $jsonObject['data']['hosts'] = $result;
     } else {
+      $app->response->setStatus(404);
       $jsonObject['status'] = 'error';
       $jsonObject['message'] = 'Couldn\'t find any certificates';
     }
     echo json_encode($jsonObject);
   } catch(PDOException $e) {
+    $app->response->setStatus(500);
     $jsonObject['status'] = 'error';
     $jsonObject['message'] = $e->getMessage();
     echo json_encode($jsonObject);
@@ -105,7 +107,7 @@ function routeGetCertificates() {
 
 // GET "/certificates/[id]"
 function routeGetCertificate($id) {
-  global $jsonObject;
+  global $jsonObject, $app;
 
   // Construct SQL query
   $sql = "SELECT * FROM certificates WHERE id=:id";
@@ -119,11 +121,13 @@ function routeGetCertificate($id) {
     if ($result) {
       $jsonObject['data'] = $result;
     } else {
+      $app->response->setStatus(404);
       $jsonObject['status'] = 'error';
       $jsonObject['message'] = 'Couldn\'t find certificate with id '.$id;
     }
     echo json_encode($jsonObject);
   } catch(PDOException $e) {
+    $app->response->setStatus(500);
     $jsonObject['status'] = 'error';
     $jsonObject['message'] = $e->getMessage();
     echo json_encode($jsonObject);
