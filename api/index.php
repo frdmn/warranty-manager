@@ -88,8 +88,13 @@ function routeGetCertificates() {
     $stmt = $dbCon->query($sql);
     $users = $stmt->fetchAll(PDO::FETCH_OBJ);
     $dbCon = null;
-    $jsonObject['data']['page'] = $inputPage;
-    $jsonObject['data']['hosts'] = $users;
+    if (!empty($users)) {
+      $jsonObject['data']['page'] = $inputPage;
+      $jsonObject['data']['hosts'] = $users;
+    } else {
+      $jsonObject['status'] = 'error';
+      $jsonObject['message'] = 'Couldn\'t find any certificates';
+    }
     echo json_encode($jsonObject);
   } catch(PDOException $e) {
     $jsonObject['status'] = 'error';
