@@ -54,37 +54,16 @@
             </thead>
             <tbody>
                 <tr>
-                    <th scope="row">1</th>
-                    <td>webmail.company.com</td>
-                    <td>about 2 weeks</td>
-                    <td>Internal</td>
-                    <td>Exchange OWA</td>
-                    <td><button type="button" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-pencil"></span></button> <button type="button" class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-minus"></span></button></td>
+                    <td colspan="6"><center>loading</center></td>
                 </tr>
-                <tr>
+                <!-- <tr>
                     <th scope="row">2</th>
                     <td>tls.startup.ru</td>
                     <td>about 1 year</td>
                     <td>Customer A (#300123)</td>
                     <td>Postfix</td>
                     <td><button type="button" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-pencil"></span></button> <button type="button" class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-minus"></span></button></td>
-                </tr>
-                <tr>
-                    <th scope="row">3</th>
-                    <td>mail.exchange-system.co.uk</td>
-                    <td>about 1 year</td>
-                    <td>Customer B (#300456)</td>
-                    <td>Exchange ETS</td>
-                    <td><button type="button" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-pencil"></span></button> <button type="button" class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-minus"></span></button></td>
-                </tr>
-                <tr>
-                    <th scope="row">4</th>
-                    <td>www.bank-of-wuerzburg.de</td>
-                    <td>about 2 years</td>
-                    <td>Customer C (#300789)</td>
-                    <td>Nginx</td>
-                    <td><button type="button" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-pencil"></span></button> <button type="button" class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-minus"></span></button></td>
-                </tr>
+                </tr> -->
             </tbody>
         </table>
       </div>
