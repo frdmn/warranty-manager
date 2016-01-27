@@ -36,7 +36,7 @@
         <h1>
             <?= GENERAL_TITLE ?>
             <small><?= getVersion(); ?></small>
-            <button class='btn btn-primary pull-right'>Add</button>
+            <button disabled class='btn btn-primary pull-right'>Add</button>
         </h1>
       </div>
 
