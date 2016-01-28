@@ -3,18 +3,18 @@ $(function() {
    * Functions
    **/
 
-  // Function to clear the table and insert a "loading" row
-  var insertLoadingPlaceholder = function() {
+  // Function to clear the table and insert a specific placeholder
+  var insertPlaceholder = function(msg) {
     $('table.certificates tbody').html(
       '<tr>' +
-      '<td colspan="6"><center>loading</center></td>' +
+      '<td colspan="6"><center>' + msg + '</center></td>' +
       '</tr>'
     );
   };
 
   // Reload certificates and populate table
   var reloadCertificates = function() {
-    insertLoadingPlaceholder();
+    insertPlaceholder('loading ...');
     $.ajax({
       type: 'GET'
       , url: 'http://' + window.location.host + '/api/certificates'
