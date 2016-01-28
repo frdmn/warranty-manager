@@ -53,9 +53,6 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td colspan="6"><center>loading</center></td>
-                </tr>
                 <!-- <tr>
                     <th scope="row">2</th>
                     <td>tls.startup.ru</td>
