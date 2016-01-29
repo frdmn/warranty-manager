@@ -60,7 +60,7 @@ gulp.task('scripts:copy', function () {
 });
 
 // Concat JavaScript
-gulp.task('scripts', function () {
+gulp.task('scripts', function (done) {
   // Process JavaScript files
   gulp.src([
     dirs.bower + '/jquery/dist/jquery.js',
@@ -71,8 +71,10 @@ gulp.task('scripts', function () {
   ])
   .pipe($.concat('build.js'))
   .pipe($.uglify())
+  .on('error', done)
   .pipe(gulp.dest(dirs.js + '/'))
   .pipe($.connect.reload());
+  done();
 });
 
 // Optimize images
