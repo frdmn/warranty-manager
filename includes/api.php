@@ -1,39 +1,4 @@
 <?php
-
-// Require config file
-include('../config.php');
-
-// Auto load composer components
-require '../vendor/autoload.php';
-
-// Check if DEBUG is enabled
-if (defined('DEBUG')) {
-  error_reporting(E_ALL);
-  ini_set('display_errors', 1);
-} else {
-  error_reporting(E_ALL & ~E_NOTICE);
-  ini_set('display_errors', 0);
-}
-
-// Middleware to inject Content-Type headers
-class APIheaderMiddleware extends \Slim\Middleware {
-  public function call() {
-    $app = $this->app;
-    // Get request path and media type
-    // Run inner middleware and application
-    $this->next->call();
-    $reqMediaType = $app->request->getMediaType();
-    $reqIsAPI = (bool) preg_match('|^/api/.*$|', $app->request->getPath());
-    if ($reqMediaType === 'application/json' || $reqIsAPI) {
-      $app->response->headers->set('Content-Type', 'application/json');
-      $app->response->headers->set('Access-Control-Allow-Methods', '*');
-      $app->response->headers->set('Access-Control-Allow-Origin', '*');
-    } else {
-      $app->response->headers->set('Content-Type', 'text/html');
-    }
-  }
-}
-
 // Standard exception data
 $jsonObject = array(
   'status' => 'success'
@@ -55,7 +20,7 @@ function getDatabaseConnection() {
 
 /* Routes */
 
-// GET "/"
+// GET "/api/"
 function routeGetOverview() {
   global $jsonObject;
 
@@ -71,7 +36,7 @@ function routeGetOverview() {
   echo json_encode($jsonObject);
 }
 
-// GET "/certificates"
+// GET "/api/certificates"
 function routeGetCertificates() {
   global $jsonObject, $app;
 
@@ -105,7 +70,7 @@ function routeGetCertificates() {
   }
 }
 
-// GET "/certificates/[id]"
+// GET "/api/certificates/[id]"
 function routeGetCertificate($id) {
   global $jsonObject, $app;
 
@@ -133,15 +98,3 @@ function routeGetCertificate($id) {
     echo json_encode($jsonObject);
   }
 }
-
-/* Logic */
-
-// Initalize Slim instance
-$app = new \Slim\Slim();
-$app->add(new \APIheaderMiddleware());
-
-$app->get('/', 'routeGetOverview');
-$app->get('/certificates', 'routeGetCertificates');
-$app->get('/certificates/:id', 'routeGetCertificate');
-
-$app->run();
