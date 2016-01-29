@@ -8,7 +8,7 @@
     <meta name="author" content="Jonas Friedmann <j@frd.mn>">
     <link rel="icon" href="assets/images/favicon.ico">
 
-    <title><?= GENERAL_TITLE ?> - Overview</title>
+    <title><?= GENERAL_TITLE ?> - <?=$this->e($title)?></title>
 
     <!-- Core CSS -->
     <link href="assets/css/style.css" rel="stylesheet">
@@ -31,30 +31,7 @@
         </h1>
       </div>
 
-      <div class="row">
-        <table class="table table-striped certificates">
-            <thead>
-                <tr>
-                    <th></th>
-                    <th>Hostname</th>
-                    <th>Expiration</th>
-                    <th>Customer</th>
-                    <th>Usage</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                <!-- <tr>
-                    <th scope="row">2</th>
-                    <td>tls.startup.ru</td>
-                    <td>about 1 year</td>
-                    <td>Customer A (#300123)</td>
-                    <td>Postfix</td>
-                    <td><button type="button" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-pencil"></span></button> <button type="button" class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-minus"></span></button></td>
-                </tr> -->
-            </tbody>
-        </table>
-      </div>
+      <?=$this->section('content')?>
     </div>
 
     <footer class="footer">
