@@ -11,7 +11,7 @@ include('includes/api.php');
 include('includes/routes.php');
 
 // Check if DEBUG is enabled
-if (defined('DEBUG')) {
+if (defined('GENERAL_DEBUG')) {
   error_reporting(E_ALL);
   ini_set('display_errors', 1);
 } else {

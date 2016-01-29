@@ -11,7 +11,7 @@
   /* General and logging */
 
   define('GENERAL_TITLE', 'CRTmgmt');
-  define('DEBUG', false);
+  define('GENERAL_DEBUG', false);
 
   /* Don't change */
   define('GENERAL_VERSION', file_get_contents('VERSION'));
