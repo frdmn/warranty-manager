@@ -17,7 +17,7 @@ $(function() {
     insertPlaceholder('loading ...');
     $.ajax({
       type: 'GET'
-      , url: 'http://' + window.location.host + '/api/certificates'
+      , url: window.location.protocol + '//' + window.location.host + '/api/certificates'
       , cache: false
       , success: function(data) {
         // Clear placeholder
