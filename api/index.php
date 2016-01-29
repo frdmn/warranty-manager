@@ -78,7 +78,7 @@ function routeGetCertificates() {
   // Parse inputs
   $inputPage = $app->request->get('page') ? $app->request->get('page') : 1;
   $realPage = $inputPage - 1;
-  $inputMaxresults = $app->request->get('results') ? $app->request->get('results') : 5;
+  $inputMaxresults = $app->request->get('results') ? $app->request->get('results') : 15;
 
   // Construct SQL query
   $sql = "SELECT * FROM certificates ORDER BY id ASC LIMIT ".$realPage * $inputMaxresults." , ".$inputMaxresults;
