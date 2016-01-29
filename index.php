@@ -40,6 +40,10 @@ class APIheaderMiddleware extends \Slim\Middleware {
 
 /* General functions */
 
+// Create new Plates instance and map template folders
+$templates = new League\Plates\Engine('templates');
+$templates->addFolder('partials', 'templates/partials');
+
 // Initalize Slim instance
 $app = new \Slim\Slim();
 $app->add(new \APIheaderMiddleware());

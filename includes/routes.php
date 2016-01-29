@@ -1,6 +1,6 @@
 <?php
 // GET "/"
 function dashboard() {
-  global $app;
-  $app->render('dashboard.php', array());
+  global $templates;
+  echo $templates->render('partials::dashboard');
 }
