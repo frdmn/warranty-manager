@@ -1,79 +1,147 @@
 <?php
-    // Auto load composer components
-    require 'vendor/autoload.php';
 
-    require_once('includes/functions.php');
+// Require config file
+include('../config.php');
 
-    // Require config
-    include('config.php');
-?>
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="certfificate monitor">
-    <meta name="author" content="Jonas Friedmann <j@frd.mn>">
-    <link rel="icon" href="assets/images/favicon.ico">
+// Auto load composer components
+require '../vendor/autoload.php';
 
-    <title><?= GENERAL_TITLE ?> - Overview</title>
+// Check if DEBUG is enabled
+if (defined('DEBUG')) {
+  error_reporting(E_ALL);
+  ini_set('display_errors', 1);
+} else {
+  error_reporting(E_ALL & ~E_NOTICE);
+  ini_set('display_errors', 0);
+}
 
-    <!-- Core CSS -->
-    <link href="assets/css/style.css" rel="stylesheet">
+// Middleware to inject Content-Type headers
+class APIheaderMiddleware extends \Slim\Middleware {
+  public function call() {
+    $app = $this->app;
+    // Get request path and media type
+    // Run inner middleware and application
+    $this->next->call();
+    $reqMediaType = $app->request->getMediaType();
+    $reqIsAPI = (bool) preg_match('|^/api/.*$|', $app->request->getPath());
+    if ($reqMediaType === 'application/json' || $reqIsAPI) {
+      $app->response->headers->set('Content-Type', 'application/json');
+      $app->response->headers->set('Access-Control-Allow-Methods', '*');
+      $app->response->headers->set('Access-Control-Allow-Origin', '*');
+    } else {
+      $app->response->headers->set('Content-Type', 'text/html');
+    }
+  }
+}
 
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
-  </head>
+// Standard exception data
+$jsonObject = array(
+  'status' => 'success'
+);
 
-  <body>
-    <!-- Begin page content -->
-    <div class="container">
-      <div class="page-header">
-        <h1>
-            <?= GENERAL_TITLE ?>
-            <small><?= getVersion(); ?></small>
-            <button disabled class='btn btn-primary pull-right'>Add</button>
-        </h1>
-      </div>
+/* General functions */
 
-      <div class="row">
-        <table class="table table-striped certificates">
-            <thead>
-                <tr>
-                    <th></th>
-                    <th>Hostname</th>
-                    <th>Expiration</th>
-                    <th>Customer</th>
-                    <th>Usage</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                <!-- <tr>
-                    <th scope="row">2</th>
-                    <td>tls.startup.ru</td>
-                    <td>about 1 year</td>
-                    <td>Customer A (#300123)</td>
-                    <td>Postfix</td>
-                    <td><button type="button" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-pencil"></span></button> <button type="button" class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-minus"></span></button></td>
-                </tr> -->
-            </tbody>
-        </table>
-      </div>
-    </div>
+function getDatabaseConnection() {
+  try {
+    $db_username = constant('DB_USERNAME');
+    $db_password = constant('DB_PASSWORD');
+    $conn = new PDO('mysql:host='.constant('DB_HOSTNAME').';dbname='.constant('DB_NAME').'', $db_username, $db_password);
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+  } catch(PDOException $e) {
+    echo 'ERROR: ' . $e->getMessage();
+  }
+  return $conn;
+}
 
-    <footer class="footer">
-      <div class="container">
-        <p class="text-muted pull-left">Made by <strong><a href="https://frd.mn" target="_blank" href="#">frdmn</a></strong> under <a href="LICENSE">MIT</a> license.</p>
-        <p class="text-muted pull-right"></p>
-      </div>
-    </footer>
+/* Routes */
 
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="assets/js/build.js"></script>
-  </body>
-</html>
+// GET "/"
+function routeGetOverview() {
+  global $jsonObject;
+
+  // Create array with available routes
+  $routes = array(
+    'GET /' => 'This API overview, right here',
+    'GET /certificates' => 'Get all available certificates',
+    'GET /certificates/[id]' => 'Get certificate with ID \'[ID]\''
+    );
+
+  $jsonObject['data'] = $routes;
+
+  echo json_encode($jsonObject);
+}
+
+// GET "/certificates"
+function routeGetCertificates() {
+  global $jsonObject, $app;
+
+  // Parse inputs
+  $inputPage = $app->request->get('page') ? $app->request->get('page') : 1;
+  $realPage = $inputPage - 1;
+  $inputMaxresults = $app->request->get('results') ? $app->request->get('results') : 15;
+
+  // Construct SQL query
+  $sql = "SELECT * FROM certificates ORDER BY id ASC LIMIT ".$realPage * $inputMaxresults." , ".$inputMaxresults;
+
+  try {
+    $dbCon = getDatabaseConnection();
+    $stmt = $dbCon->query($sql);
+    $result = $stmt->fetchAll(PDO::FETCH_OBJ);
+    $dbCon = null;
+    if (!empty($result)) {
+      $jsonObject['data']['page'] = $inputPage;
+      $jsonObject['data']['hosts'] = $result;
+    } else {
+      $app->response->setStatus(404);
+      $jsonObject['status'] = 'error';
+      $jsonObject['message'] = 'Couldn\'t find any certificates';
+    }
+    echo json_encode($jsonObject);
+  } catch(PDOException $e) {
+    $app->response->setStatus(500);
+    $jsonObject['status'] = 'error';
+    $jsonObject['message'] = $e->getMessage();
+    echo json_encode($jsonObject);
+  }
+}
+
+// GET "/certificates/[id]"
+function routeGetCertificate($id) {
+  global $jsonObject, $app;
+
+  // Construct SQL query
+  $sql = "SELECT * FROM certificates WHERE id=:id";
+  try {
+    $dbCon = getDatabaseConnection();
+    $stmt = $dbCon->prepare($sql);
+    $stmt->bindParam("id", $id);
+    $stmt->execute();
+    $result = $stmt->fetchObject();
+    $dbCon = null;
+    if ($result) {
+      $jsonObject['data'] = $result;
+    } else {
+      $app->response->setStatus(404);
+      $jsonObject['status'] = 'error';
+      $jsonObject['message'] = 'Couldn\'t find certificate with id '.$id;
+    }
+    echo json_encode($jsonObject);
+  } catch(PDOException $e) {
+    $app->response->setStatus(500);
+    $jsonObject['status'] = 'error';
+    $jsonObject['message'] = $e->getMessage();
+    echo json_encode($jsonObject);
+  }
+}
+
+/* Logic */
+
+// Initalize Slim instance
+$app = new \Slim\Slim();
+$app->add(new \APIheaderMiddleware());
+
+$app->get('/', 'routeGetOverview');
+$app->get('/certificates', 'routeGetCertificates');
+$app->get('/certificates/:id', 'routeGetCertificate');
+
+$app->run();
