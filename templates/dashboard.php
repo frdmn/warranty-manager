@@ -1,12 +1,3 @@
-<?php
-    // Auto load composer components
-    require 'vendor/autoload.php';
-
-    require_once('includes/functions.php');
-
-    // Require config
-    include('config.php');
-?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
