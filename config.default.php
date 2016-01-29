@@ -12,3 +12,6 @@
 
   define('GENERAL_TITLE', 'CRTmgmt');
   define('DEBUG', false);
+
+  /* Don't change */
+  define('GENERAL_VERSION', file_get_contents('VERSION'));

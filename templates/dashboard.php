@@ -26,7 +26,7 @@
       <div class="page-header">
         <h1>
             <?= GENERAL_TITLE ?>
-            <small><?= getVersion(); ?></small>
+            <small><?= GENERAL_VERSION ?></small>
             <button disabled class='btn btn-primary pull-right'>Add</button>
         </h1>
       </div>
