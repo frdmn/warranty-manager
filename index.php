@@ -7,7 +7,6 @@ include('config.php');
 require 'vendor/autoload.php';
 
 // Include config file
-include('includes/api.php');
 include('includes/routes.php');
 
 // Check if DEBUG is enabled
