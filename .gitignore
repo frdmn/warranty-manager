@@ -27,7 +27,7 @@ node_modules
 vendor
 composer.lock
 
-#####=== crtmgmt ===#####
+#####=== warranty-manager ===#####
 config.php
 bower_components
 assets/css/*.css

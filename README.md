@@ -1,14 +1,14 @@
-# crtmgmt (WIP DON'T USE YET)
+# warranty-manager (WIP DON'T USE YET)
 
 ![](http://i.imgur.com/xHDu6a7.png)
 
-Simple web app to keep track of your TLS/SSL certificates: How long they are valid? Which ones are due for renewal? Where and what for are they in use (e.g. wild card certificates)?
+Simple web app to keep track of the warraty/service of your devices.
 
 ## Installation
 
 1. Make sure you've installed all requirements
 2. Clone this repository:
-  `git clone https://github.com/frdmn/crtmgmt`
+  `git clone https://github.com/frdmn/warranty-manager`
 3. Install dependencies using `npm` and `bower`:  
   `composer install` (for PHP dependencies)  
   `npm install` (for Node dependencies)  

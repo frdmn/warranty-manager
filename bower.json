@@ -1,7 +1,7 @@
 {
-  "name": "crtmgmt",
+  "name": "warranty-manager",
   "version": "1.0.0",
-  "description": "Dashboard to monitor and manage SSL/TLS certificates.",
+  "description": "Dashboard to monitor device warranties.",
   "authors": [
     "Jonas Friedmann <j@frd.mn>"
   ],
@@ -9,7 +9,7 @@
     "node"
   ],
   "license": "MIT",
-  "homepage": "https://github.com/frdmn/crtmgmt",
+  "homepage": "https://github.com/frdmn/warranty-manager",
   "ignore": [
     "**/.*",
     "node_modules",
