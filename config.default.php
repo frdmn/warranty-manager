@@ -4,9 +4,9 @@
    */
 
   define('DB_HOSTNAME', 'localhost');
-  define('DB_NAME', 'crt');
-  define('DB_USERNAME', 'crt');
-  define('DB_PASSWORD', 'crt');
+  define('DB_NAME', 'wrnty');
+  define('DB_USERNAME', 'wrnty');
+  define('DB_PASSWORD', 'wrnty');
 
   /* General and logging */
 

@@ -11,28 +11,28 @@ SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
 --
--- Database: `crt`
+-- Database: `warranties`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `certificates`
+-- Table structure for table `warranties`
 --
 
-CREATE TABLE IF NOT EXISTS `certificates` (
+CREATE TABLE IF NOT EXISTS `warranties` (
   `id` int(11) NOT NULL,
-  `hostname` varchar(50) NOT NULL,
+  `device` varchar(50) NOT NULL,
   `expiration` date NOT NULL,
   `customer` int(11) NOT NULL,
-  `usage` varchar(15) NOT NULL
+  `information` varchar(15) NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `certificates`
+-- Dumping data for table `warranties`
 --
 
-INSERT INTO `certificates` (`id`, `hostname`, `expiration`, `customer`, `usage`) VALUES
+INSERT INTO `warranties` (`id`, `device`, `expiration`, `customer`, `information`) VALUES
 (1, 'webmail.company.com', '2016-01-29', 0, 'Exchange OWA'),
 (2, 'tls.startup.ru', '2017-01-22', 1, 'Postfix'),
 (3, 'mail.exchange-system.co.uk', '2017-01-28', 2, 'Exchange ETS'),
@@ -49,9 +49,9 @@ INSERT INTO `certificates` (`id`, `hostname`, `expiration`, `customer`, `usage`)
 --
 
 --
--- Indexes for table `certificates`
+-- Indexes for table `warranties`
 --
-ALTER TABLE `certificates`
+ALTER TABLE `warranties`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -59,7 +59,7 @@ ALTER TABLE `certificates`
 --
 
 --
--- AUTO_INCREMENT for table `certificates`
+-- AUTO_INCREMENT for table `warranties`
 --
-ALTER TABLE `certificates`
+ALTER TABLE `warranties`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
