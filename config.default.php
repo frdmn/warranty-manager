@@ -10,7 +10,7 @@
 
   /* General and logging */
 
-  define('GENERAL_TITLE', 'CRTmgmt');
+  define('GENERAL_TITLE', 'Warranty Manager');
   define('GENERAL_DEBUG', false);
 
   /* Don't change */
