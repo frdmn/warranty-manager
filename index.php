@@ -50,7 +50,7 @@ $app->add(new \APIheaderMiddleware());
 // Set routes
 $app->get('/', 'dashboard');
 $app->get('/api', 'routeGetOverview');
-$app->get('/api/certificates', 'routeGetCertificates');
-$app->get('/api/certificates/:id', 'routeGetCertificate');
+$app->get('/api/warranties', 'routeGetWarranties');
+$app->get('/api/warranties/:id', 'routeGetWarranty');
 
 $app->run();

@@ -44,8 +44,8 @@ function routeGetOverview() {
   // Create array with available routes
   $routes = array(
     'GET /' => 'This API overview, right here',
-    'GET /certificates' => 'Get all available certificates',
-    'GET /certificates/[id]' => 'Get certificate with ID \'[ID]\''
+    'GET /warranties' => 'Get all available certificates',
+    'GET /warranties/[id]' => 'Get certificate with ID \'[ID]\''
     );
 
   $jsonObject['data'] = $routes;
@@ -54,7 +54,7 @@ function routeGetOverview() {
 }
 
 // GET "/api/certificates"
-function routeGetCertificates() {
+function routeGetWarranties() {
   global $jsonObject, $app;
 
   // Parse inputs
@@ -88,7 +88,7 @@ function routeGetCertificates() {
 }
 
 // GET "/api/certificates/[id]"
-function routeGetCertificate($id) {
+function routeGetWarranty($id) {
   global $jsonObject, $app;
 
   // Construct SQL query
