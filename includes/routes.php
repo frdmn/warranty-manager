@@ -44,7 +44,7 @@ function routeGetOverview() {
   // Create array with available routes
   $routes = array(
     'GET /' => 'This API overview, right here',
-    'GET /warranties' => 'Get all available certificates',
+    'GET /warranties' => 'Get all available warranties',
     'GET /warranties/[id]' => 'Get certificate with ID \'[ID]\''
     );
 
@@ -53,7 +53,7 @@ function routeGetOverview() {
   echo json_encode($jsonObject);
 }
 
-// GET "/api/certificates"
+// GET "/api/warranties"
 function routeGetWarranties() {
   global $jsonObject, $app;
 
@@ -63,7 +63,7 @@ function routeGetWarranties() {
   $inputMaxresults = $app->request->get('results') ? $app->request->get('results') : 15;
 
   // Construct SQL query
-  $sql = "SELECT * FROM certificates ORDER BY id ASC LIMIT ".$realPage * $inputMaxresults." , ".$inputMaxresults;
+  $sql = "SELECT * FROM warranties ORDER BY id ASC LIMIT ".$realPage * $inputMaxresults." , ".$inputMaxresults;
 
   try {
     $dbCon = getDatabaseConnection();
@@ -76,7 +76,7 @@ function routeGetWarranties() {
     } else {
       $app->response->setStatus(404);
       $jsonObject['status'] = 'error';
-      $jsonObject['message'] = 'Couldn\'t find any certificates';
+      $jsonObject['message'] = 'Couldn\'t find any warranties';
     }
     echo json_encode($jsonObject);
   } catch(PDOException $e) {
@@ -87,12 +87,12 @@ function routeGetWarranties() {
   }
 }
 
-// GET "/api/certificates/[id]"
+// GET "/api/warranties/[id]"
 function routeGetWarranty($id) {
   global $jsonObject, $app;
 
   // Construct SQL query
-  $sql = "SELECT * FROM certificates WHERE id=:id";
+  $sql = "SELECT * FROM warranties WHERE id=:id";
   try {
     $dbCon = getDatabaseConnection();
     $stmt = $dbCon->prepare($sql);
