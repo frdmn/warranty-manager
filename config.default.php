@@ -12,6 +12,3 @@
 
   define('GENERAL_TITLE', 'Warranty Manager');
   define('GENERAL_DEBUG', false);
-
-  /* Don't change */
-  define('GENERAL_VERSION', file_get_contents('VERSION'));

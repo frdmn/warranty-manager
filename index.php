@@ -3,6 +3,9 @@
 // Include config file
 include('config.php');
 
+// Set version
+define('GENERAL_VERSION', file_get_contents('VERSION'));
+
 // Auto load composer components
 require 'vendor/autoload.php';
 
