@@ -12,15 +12,6 @@ require 'vendor/autoload.php';
 // Include config file
 include('includes/routes.php');
 
-// Check if DEBUG is enabled
-if (defined('GENERAL_DEBUG')) {
-  error_reporting(E_ALL);
-  ini_set('display_errors', 1);
-} else {
-  error_reporting(E_ALL & ~E_NOTICE);
-  ini_set('display_errors', 0);
-}
-
 // Middleware class to inject Content-Type headers
 class APIheaderMiddleware extends \Slim\Middleware {
   public function call() {
@@ -47,7 +38,10 @@ $templates = new League\Plates\Engine('templates');
 $templates->addFolder('partials', 'templates/partials');
 
 // Initalize Slim instance
-$app = new \Slim\Slim();
+$app = new \Slim\Slim(array(
+    'debug' => (defined('GENERAL_DEBUG') && GENERAL_DEBUG === true) ? true : false
+));
+
 $app->add(new \APIheaderMiddleware());
 
 // Set routes
@@ -56,4 +50,5 @@ $app->get('/api', 'routeGetOverview');
 $app->get('/api/warranties', 'routeGetWarranties');
 $app->get('/api/warranties/:id', 'routeGetWarranty');
 
+// Run application
 $app->run();
