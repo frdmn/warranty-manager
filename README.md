@@ -1,6 +1,6 @@
 # warranty-manager (WIP DON'T USE YET)
 
-![](http://i.imgur.com/xHDu6a7.png)
+![](http://up.frd.mn/piYubbLXeB.png)
 
 Simple web app to keep track of the warraty/service of your devices.
 
