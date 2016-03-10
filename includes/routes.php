@@ -1,8 +1,6 @@
 <?php
 
-/*
- * General
- */
+/* General */
 
 // Standard exception data
 $jsonObject = array(
