@@ -11,6 +11,10 @@ $jsonObject = array(
 
 /* Functions */
 
+/**
+ * Establish MySQL database for further/later use
+ * @return {PDO} connection instance
+ */
 function getDatabaseConnection() {
   try {
     $db_username = constant('DB_USERNAME');
@@ -23,21 +27,25 @@ function getDatabaseConnection() {
   return $conn;
 }
 
-/*
- * Routes
+/* Routes */
+
+// Dashboard
+
+/**
+ * Route - "GET /"
+ * @return void
  */
-
-/* Dashboard */
-
-// GET "/"
 function dashboard() {
   global $templates;
   echo $templates->render('partials::dashboard');
 }
 
-/* API */
+// API
 
-// GET "/api/"
+/**
+ * Route - "GET /api/" - to display an API route overview
+ * @return void
+ */
 function routeGetOverview() {
   global $jsonObject;
 
@@ -53,7 +61,10 @@ function routeGetOverview() {
   echo json_encode($jsonObject);
 }
 
-// GET "/api/warranties"
+/**
+ * Route - "GET /api/warranties" - to show all available warranties
+ * @return void
+ */
 function routeGetWarranties() {
   global $jsonObject, $app;
 
@@ -87,7 +98,10 @@ function routeGetWarranties() {
   }
 }
 
-// GET "/api/warranties/[id]"
+/**
+ * Route - "GET /api/warranties/:id" - to show a specific warranty
+ * @return void
+ */
 function routeGetWarranty($id) {
   global $jsonObject, $app;
 

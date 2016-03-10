@@ -1,20 +1,27 @@
 $(function() {
-  /*
-   * Functions
-   **/
+  /* Functions */
 
-  // Function to clear the table and insert a specific placeholder
-  var insertPlaceholder = function(msg) {
+  /**
+   * Remove the contents of the current <table> DOM element
+   * and replace it with the text from the String argument
+   * @param {String} msg
+   * @return void
+   */
+  var insertTablePlaceholder = function(msg) {
     $('table.certificates tbody').html(
       '<tr>' +
       '<td colspan="6"><center>' + msg + '</center></td>' +
       '</tr>'
     );
+    return;
   };
 
-  // Reload certificates and populate table
-  var reloadCertificates = function() {
-    insertPlaceholder('loading ...');
+  /**
+   * Populate <table> DOM element with database entries
+   * @return void
+   */
+  var reloadWarranties = function() {
+    insertTablePlaceholder('loading ...');
     $.ajax({
       type: 'GET'
       , url: window.location.protocol + '//' + window.location.host + '/api/warranties'
@@ -35,14 +42,13 @@ $(function() {
             '</tr>'
           );
         });
+        return;
       }
     });
   };
 
-  /*
-   * Main
-   **/
+  /* Main */
 
-  // Call reloadCertificates()
-  reloadCertificates();
+  // Call reloadWarranties() on page load
+  reloadWarranties();
 });
