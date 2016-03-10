@@ -53,7 +53,7 @@ function routeGetOverview() {
   $routes = array(
     'GET /' => 'This API overview, right here',
     'GET /warranties' => 'Get all available warranties',
-    'GET /warranties/[id]' => 'Get certificate with ID \'[ID]\''
+    'GET /warranties/[id]' => 'Get warranty with ID \'[ID]\''
     );
 
   $jsonObject['data'] = $routes;
@@ -119,7 +119,7 @@ function routeGetWarranty($id) {
     } else {
       $app->response->setStatus(404);
       $jsonObject['status'] = 'error';
-      $jsonObject['message'] = 'Couldn\'t find certificate with id '.$id;
+      $jsonObject['message'] = 'Couldn\'t find warranty with id '.$id;
     }
     echo json_encode($jsonObject);
   } catch(PDOException $e) {

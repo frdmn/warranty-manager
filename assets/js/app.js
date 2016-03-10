@@ -31,7 +31,7 @@ $(function() {
         $('table.certificates tbody').html('');
         // Populate <ul> with host <li>'s
         data.data.hosts.forEach(function(warranty) {
-          $('table.certificates tbody').append(
+          $('table.warranties tbody').append(
             '<tr>' +
             '<th scope="row">' + warranty.id + '</th>' +
             '<td>' + warranty.device + '</td>' +
