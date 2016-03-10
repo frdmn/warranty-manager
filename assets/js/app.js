@@ -34,10 +34,12 @@ $(function() {
           $('table.warranties tbody').append(
             '<tr>' +
             '<th scope="row">' + warranty.id + '</th>' +
-            '<td>' + warranty.device + '</td>' +
-            '<td>' + warranty.expiration + '</td>' +
-            '<td>' + warranty.customer + ' (#300123)</td>' +
+            '<td>' + warranty.inventoryNo + '</td>' +
+            '<td>' + warranty.label + '</td>' +
             '<td>' + warranty.information + '</td>' +
+            '<td>' + warranty.serialNo + '</td>' +
+            '<td>' + warranty.customerId + ' (#300123)</td>' +
+            '<td>' + warranty.expiration +
             '<td><button disabled type="button" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-pencil"></span></button> <button disabled type="button" class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-minus"></span></button></td>' +
             '</tr>'
           );

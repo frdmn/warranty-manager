@@ -5,10 +5,12 @@
     <thead>
         <tr>
             <th></th>
-            <th>Hostname</th>
-            <th>Expiration</th>
+            <th>Inventory#</th>
+            <th>Label</th>
+            <th>Information</th>
+            <th>Serial</th>
             <th>Customer</th>
-            <th>Usage</th>
+            <th>Expiration</th>
             <th></th>
         </tr>
     </thead>
