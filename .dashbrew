@@ -1,8 +1,8 @@
 ---
-warranty-manager.devel:
-  title: warranty-manager
+crtmgmt.devel:
+  title: crtmgmt
   php:
     build: system
   vhost:
-    servername: warranty-manager.devel
+    servername: crtmgmt.devel
     ssl: false

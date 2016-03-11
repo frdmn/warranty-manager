@@ -1,7 +1,7 @@
 <?php $this->layout('layout', ['title' => 'Dashboard']) ?>
 
 <div class="row">
-<table class="table table-striped warranties">
+<table class="table table-striped certificates">
     <thead>
         <tr>
             <th></th>

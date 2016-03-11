@@ -1,7 +1,7 @@
 {
-  "name": "warranty-manager",
+  "name": "certificate-manager",
   "version": "1.0.0",
-  "description": "Dashboard to monitor device warranties.",
+  "description": "Dashboard to monitor certificate expiration and usage.",
   "authors": [
     "Jonas Friedmann <j@frd.mn>"
   ],
@@ -9,7 +9,7 @@
     "node"
   ],
   "license": "MIT",
-  "homepage": "https://github.com/frdmn/warranty-manager",
+  "homepage": "https://github.com/frdmn/certificate-manager",
   "ignore": [
     "**/.*",
     "node_modules",

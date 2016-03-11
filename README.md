@@ -1,14 +1,14 @@
-# warranty-manager (WIP DON'T USE YET)
+# certificate-manager (WIP DON'T USE YET)
 
 ![](http://up.frd.mn/piYubbLXeB.png)
 
-Simple web app to keep track of the warraty/service of your devices.
+Simple web app to keep track of the SSL certificate expiration and usage.
 
 ## Installation
 
 1. Make sure you've installed all requirements
 2. Clone this repository:
-  `git clone https://github.com/frdmn/warranty-manager`
+  `git clone https://github.com/frdmn/certificate-manager`
 3. Install dependencies using `npm` and `bower`:  
   `composer install` (for PHP dependencies)  
   `npm install` (for Node dependencies)  

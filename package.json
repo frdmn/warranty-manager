@@ -1,10 +1,10 @@
 {
-  "name": "warranty-manager",
+  "name": "certificate-manager",
   "version": "1.0.0",
-  "description": "Dashboard to monitor device warranties.",
+  "description": "Dashboard to monitor certificate expiration and usage.",
   "repository": {
     "type": "git",
-    "url": "https://github.com/frdmn/warranty-manager.git"
+    "url": "https://github.com/frdmn/certificate-manager.git"
   },
   "devDependencies": {
     "gulp": "^3.9.0",
