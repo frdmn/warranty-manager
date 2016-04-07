@@ -1,14 +1,7 @@
 <p align="center">
-  <b>:warning: Abandoned :warning:<br>please don't expect any further development 
-  <br><br>
-  <img src="http://i.imgur.com/lbOBnBv.gif">
-</p>
-
-<p align="center">
   <b>:warning: Abandoned :warning:</b>
-  <br><br>
-  Please don't expect any further development.
-  
+  <br><br><img src="http://i.imgur.com/lbOBnBv.gif">
+  <br><br>Please don't expect any further development 
 </p>
 
 # certificate-manager
