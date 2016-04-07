@@ -1,6 +1,8 @@
-### :warning: Abandoned - please don't expect any further development :warning:
-
-![](http://i.imgur.com/lbOBnBv.gif)
+<p align="center">
+  <b>:warning: Abandoned - please don't expect any further development :warning:
+  <br><br>
+  <img src="http://i.imgur.com/lbOBnBv.gif">
+</p>
 
 # certificate-manager
 
