@@ -1,4 +1,6 @@
-# certificate-manager (WIP DON'T USE YET)
+### :warning: Abandoned - please don't expect any further development :warning:
+
+# certificate-manager
 
 ![](http://up.frd.mn/piYubbLXeB.png)
 
