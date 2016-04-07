@@ -1,5 +1,7 @@
 ### :warning: Abandoned - please don't expect any further development :warning:
 
+![](http://i.imgur.com/lbOBnBv.gif)
+
 # certificate-manager
 
 ![](http://up.frd.mn/piYubbLXeB.png)
